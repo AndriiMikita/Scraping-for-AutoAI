@@ -1,0 +1,8 @@
+__pycache__/
+*.py[cod]
+.scrapy/
+outputs/
+dumps/
+.env
+.env.*
+!.env.example
