@@ -1,62 +1,84 @@
-import os
-import csv
 import json
-from xml.etree.ElementTree import Element, SubElement, ElementTree
+import csv
+import sys
+import os
 import psycopg2
 from psycopg2.extras import RealDictCursor
-from pathlib import Path
+
+def db_url():
+    user = os.getenv("POSTGRES_USER", "market")
+    password = os.getenv("POSTGRES_PASSWORD", "marketpass")
+    host = os.getenv("DB_HOST", "db")
+    port = os.getenv("DB_PORT", "5432")
+    db = os.getenv("POSTGRES_DB", "marketdb")
+    return f"dbname={db} user={user} password={password} host={host} port={port}"
 
 def fetch_rows():
-    conn = psycopg2.connect(
-        host=os.getenv("DB_HOST"),
-        port=int(os.getenv("DB_PORT","5432")),
-        user=os.getenv("POSTGRES_USER"),
-        password=os.getenv("POSTGRES_PASSWORD"),
-        dbname=os.getenv("POSTGRES_DB"),
-    )
-    with conn.cursor(cursor_factory=RealDictCursor) as cur:
-        cur.execute("SELECT id, source_url, company_name, services_offered, industries_served, tech_stack, pricing_models, locations, certifications, case_studies_count, last_crawled_at, created_at, updated_at FROM market_entries ORDER BY id")
-        rows = cur.fetchall()
-    conn.close()
-    return rows
+    conn = psycopg2.connect(db_url())
+    try:
+        with conn.cursor(cursor_factory=RealDictCursor) as cur:
+            cur.execute("""
+                SELECT
+                  id,
+                  source_url,
+                  profile_url,
+                  website_url,
+                  company_name,
+                  rating,
+                  reviews_count,
+                  hourly_rate,
+                  min_project_size,
+                  team_size,
+                  locations,
+                  services_offered,
+                  case_studies_count,
+                  last_crawled_at
+                FROM market_entries
+                ORDER BY id ASC
+            """)
+            return cur.fetchall()
+    finally:
+        conn.close()
 
 def write_json(path, rows):
-    Path(path).parent.mkdir(parents=True, exist_ok=True)
     with open(path, "w", encoding="utf-8") as f:
         json.dump(rows, f, ensure_ascii=False, indent=2, default=str)
 
-def write_csv(path, rows):
-    Path(path).parent.mkdir(parents=True, exist_ok=True)
-    if not rows:
-        with open(path, "w", encoding="utf-8", newline="") as f:
-            f.write("")
-        return
-    fieldnames = list(rows[0].keys())
-    with open(path, "w", encoding="utf-8", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames)
-        writer.writeheader()
-        for r in rows:
-            writer.writerow({k: (",".join(v) if isinstance(v, list) else v) for k, v in r.items()})
-
 def write_xml(path, rows):
-    Path(path).parent.mkdir(parents=True, exist_ok=True)
-    root = Element("market_entries")
-    for r in rows:
-        e = SubElement(root, "entry")
-        for k, v in r.items():
-            c = SubElement(e, k)
-            if isinstance(v, list):
-                c.text = ", ".join(v)
-            else:
-                c.text = "" if v is None else str(v)
-    tree = ElementTree(root)
-    tree.write(path, encoding="utf-8", xml_declaration=True)
+    from xml.sax.saxutils import escape
+    with open(path, "w", encoding="utf-8") as f:
+        f.write("<market>\n")
+        for r in rows:
+            f.write("  <entry>\n")
+            for k, v in r.items():
+                if isinstance(v, (list, dict)):
+                    v = json.dumps(v, ensure_ascii=False)
+                f.write(f"    <{k}>{escape(str(v) if v is not None else '')}</{k}>\n")
+            f.write("  </entry>\n")
+        f.write("</market>\n")
+
+def write_csv(path, rows):
+    if not rows:
+        with open(path, "w", newline="", encoding="utf-8") as f:
+            pass
+        return
+    keys = list(rows[0].keys())
+    with open(path, "w", newline="", encoding="utf-8") as f:
+        w = csv.DictWriter(f, fieldnames=keys)
+        w.writeheader()
+        for r in rows:
+            r2 = {}
+            for k, v in r.items():
+                if isinstance(v, (list, dict)):
+                    r2[k] = json.dumps(v, ensure_ascii=False)
+                else:
+                    r2[k] = v
+            w.writerow(r2)
 
 def main():
-    import sys
-    out_json = sys.argv[1] if len(sys.argv) > 1 else "outputs/market_data.json"
-    out_xml = sys.argv[2] if len(sys.argv) > 2 else "outputs/market_data.xml"
-    out_csv = sys.argv[3] if len(sys.argv) > 3 else "outputs/market_data.csv"
+    out_json = sys.argv[1]
+    out_xml = sys.argv[2]
+    out_csv = sys.argv[3]
     rows = fetch_rows()
     write_json(out_json, rows)
     write_xml(out_xml, rows)
