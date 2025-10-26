@@ -1,0 +1,157 @@
+{
+  "timestamp": "2025-10-26T19:09:23.077964",
+  "rows_total": 1109,
+  "unique_companies": 683,
+  "possible_duplicates": 410,
+  "by_source": {
+    "clutch.co": 831,
+    "www.goodfirms.co": 278
+  },
+  "null_counts": {
+    "company_name": 0,
+    "source": 0,
+    "rating": 1,
+    "reviews_count": 0,
+    "hourly_rate": 0,
+    "min_project_size": 278,
+    "team_size": 0,
+    "locations": 0,
+    "services_offered": 0
+  },
+  "completeness": {
+    "company_name": 1.0,
+    "source": 1.0,
+    "rating": 0.9990982867448152,
+    "reviews_count": 1.0,
+    "hourly_rate": 1.0,
+    "min_project_size": 0.7493237150586114,
+    "team_size": 1.0,
+    "locations": 1.0,
+    "services_offered": 1.0
+  },
+  "numeric_stats": {
+    "rating": {
+      "count": 1108,
+      "mean": 4.919043321299639,
+      "median": 5.0,
+      "min": 4.0,
+      "max": 5.0,
+      "std": 0.11200797623140882
+    },
+    "reviews_count": {
+      "count": 1109,
+      "mean": 35.85482416591524,
+      "median": 25.0,
+      "min": 1.0,
+      "max": 358.0,
+      "std": 37.197536246228076
+    },
+    "hourly_low": {
+      "count": 1043,
+      "mean": 45.11025886864813,
+      "median": 50.0,
+      "min": 0.0,
+      "max": 200.0,
+      "std": 37.62455093731042
+    },
+    "hourly_high": {
+      "count": 1043,
+      "mean": 82.32885906040268,
+      "median": 99.0,
+      "min": 25.0,
+      "max": 300.0,
+      "std": 48.561200689651564
+    },
+    "hourly_mid": {
+      "count": 1043,
+      "mean": 63.719558964525405,
+      "median": 74.5,
+      "min": 12.5,
+      "max": 250.0,
+      "std": 42.90956791009908
+    },
+    "min_project_usd": {
+      "count": 816,
+      "mean": 22966.91176470588,
+      "median": 10000.0,
+      "min": 1000.0,
+      "max": 250000.0,
+      "std": 27182.819064467752
+    },
+    "team_low": {
+      "count": 1109,
+      "mean": 72.30117222723175,
+      "median": 50.0,
+      "min": 0.0,
+      "max": 250.0,
+      "std": 85.95393468897362
+    },
+    "team_high": {
+      "count": 1109,
+      "mean": 315.27592425608657,
+      "median": 249.0,
+      "min": 9.0,
+      "max": 999.0,
+      "std": 335.9153123665105
+    },
+    "team_mid": {
+      "count": 1109,
+      "mean": 193.78854824165916,
+      "median": 149.5,
+      "min": 4.5,
+      "max": 624.5,
+      "std": 210.87046613471608
+    }
+  },
+  "outliers_1_5_IQR": {
+    "rating": {
+      "count": 66,
+      "lower": 4.750000000000001,
+      "upper": 5.1499999999999995
+    },
+    "reviews_count": {
+      "count": 44,
+      "lower": -47.0,
+      "upper": 105.0
+    },
+    "hourly_mid": {
+      "count": 62,
+      "lower": -19.25,
+      "upper": 130.75
+    },
+    "team_mid": {
+      "count": 202,
+      "lower": -150.5,
+      "upper": 329.5
+    },
+    "min_project_usd": {
+      "count": 155,
+      "lower": -12500.0,
+      "upper": 47500.0
+    }
+  },
+  "columns": [
+    "id",
+    "source_url",
+    "company_name",
+    "rating",
+    "reviews_count",
+    "hourly_rate",
+    "min_project_size",
+    "team_size",
+    "last_crawled_at",
+    "locations",
+    "services_offered",
+    "source",
+    "hourly_low",
+    "hourly_high",
+    "hourly_mid",
+    "min_project_usd",
+    "team_low",
+    "team_high",
+    "team_mid",
+    "svc_ai",
+    "svc_iot",
+    "svc_mobile"
+  ]
+}

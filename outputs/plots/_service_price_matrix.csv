@@ -1,0 +1,13 @@
+service_type,price_segment,n
+AI,high-priced,52
+AI,low-priced,41
+AI,middle-priced,260
+IoT,high-priced,32
+IoT,low-priced,12
+IoT,middle-priced,125
+Mobile,high-priced,9
+Mobile,low-priced,9
+Mobile,middle-priced,70
+Other,high-priced,2
+Other,low-priced,21
+Other,middle-priced,50

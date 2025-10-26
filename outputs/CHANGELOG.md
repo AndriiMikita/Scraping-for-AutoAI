@@ -1,0 +1,5 @@
+# Data Changes
+
+- rows_after_merge: 683
+- segments: {'middle-priced': 505, 'high-priced': 95, 'low-priced': 83}
+- timestamp: 2025-10-26T18:27:55.994780

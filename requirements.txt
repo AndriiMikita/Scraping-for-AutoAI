@@ -3,3 +3,6 @@ psycopg2-binary
 SQLAlchemy
 python-dotenv
 lxml
+pandas
+numpy
+matplotlib

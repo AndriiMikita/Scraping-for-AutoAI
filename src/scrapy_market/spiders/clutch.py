@@ -15,7 +15,7 @@ CATEGORIES_DEFAULT = [
 ]
 
 class ClutchAgenciesSpider(scrapy.Spider):
-    name = "agencies"
+    name = "clutch"
     allowed_domains = ["clutch.co"]
     custom_settings = {
         "ROBOTSTXT_OBEY": True,
@@ -33,10 +33,10 @@ class ClutchAgenciesSpider(scrapy.Spider):
     }
 
     async def start(self):
-        seeds_env = os.getenv("SEED_URLS", "")
+        seeds_env = os.getenv("CLUTCH_SEED_URLS", "")
         seeds = [s.strip() for s in seeds_env.split(",") if s.strip()] or CATEGORIES_DEFAULT
         seeds = [s for s in seeds if s.startswith("http")]
-        max_pages = int(os.getenv("CLUTCH_MAX_PAGES", "25"))
+        max_pages = int(os.getenv("MAX_PAGES", "25"))
         for url in seeds:
             yield scrapy.Request(
                 url=url,

@@ -6,8 +6,26 @@ up:
 down:
 	docker compose down
 
+scrape-clutch:
+	docker compose run --rm scraper bash -lc "python -m src.scripts.wait_for_postgres && scrapy crawl clutch"
+
+scrape-goodfirms:
+	docker compose run --rm scraper bash -lc "python -m src.scripts.wait_for_postgres && scrapy crawl goodfirms"
+
 scrape:
-	docker compose run --rm scraper bash -lc "python -m src.scripts.wait_for_postgres && scrapy crawl agencies"
+	docker compose run --rm scraper bash -lc "python -m src.scripts.wait_for_postgres && scrapy crawl clutch && scrapy crawl goodfirms"
+
+
+clean:
+	docker compose run --rm scraper python -m src.scripts.clean_data
+
+merge:
+	docker compose run --rm scraper python -m src.scripts.merge_tables
+
+analyze:
+	docker compose run --rm scraper python -m src.scripts.analyze_data
+
+pipeline: scrape clean merge analyze
 
 export:
 	docker compose run --rm scraper python -m src.scripts.export_data outputs/market_data.json outputs/market_data.xml outputs/market_data.csv
