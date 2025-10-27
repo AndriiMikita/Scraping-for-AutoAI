@@ -1,5 +1,5 @@
 import os, json, pandas as pd, numpy as np
-from datetime import datetime
+import datetime
 from xml.etree.ElementTree import Element, SubElement, ElementTree
 import ast
 
@@ -65,7 +65,7 @@ def main():
     if df.empty:
         print("no data"); return
 
-    run_ts=datetime.now(datetime.timezone.utc).isoformat()
+    run_ts=datetime.datetime.now(datetime.timezone.utc).isoformat()
     rows_in=int(len(df))
     src_counts=df["source"].value_counts(dropna=False).to_dict()
     dup_map=df["company_name"].value_counts()

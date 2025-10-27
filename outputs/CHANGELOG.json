@@ -1,9 +1,196 @@
 {
-  "rows_after_merge": 683,
+  "run_timestamp": "2025-10-27T09:27:23.392681+00:00",
+  "rows_in": 1109,
+  "rows_after_dedup": 683,
+  "duplicates_removed": 426,
+  "sources": {
+    "clutch.co": 831,
+    "www.goodfirms.co": 278
+  },
+  "top_duplicate_names": {
+    "Innovacio Technologies": 8,
+    "Waverley Software": 8,
+    "SDLC Corp": 8,
+    "AgileTech Vietnam": 7,
+    "Tepia": 7,
+    "SEROKELL": 7,
+    "Tallium Inc.": 7,
+    "AppMakers USA": 7,
+    "Inoxoft": 7,
+    "Plavno": 7,
+    "instinctools": 6,
+    "OpenXcell": 6,
+    "Relevant Software": 6,
+    "Anadea": 6,
+    "SoluLab": 6,
+    "Trigma": 6,
+    "Lumitech": 6,
+    "Dedicated Developers": 5,
+    "Droids On Roids": 5,
+    "Emizen Tech": 5,
+    "Very": 5,
+    "Futured": 5,
+    "mobitouch": 5,
+    "Algoworks": 5,
+    "Ackee": 5,
+    "Svitla Systems": 5,
+    "Devsinc": 5,
+    "SolveIt": 5,
+    "DianApps": 5,
+    "Brainvire Infotech Inc": 5,
+    "Tapptitude": 5,
+    "Yalantis": 4,
+    "iomico": 4,
+    "ArcTouch": 4,
+    "Groove Jones": 4,
+    "Lizard Global": 4,
+    "Quytech": 4,
+    "Krazimo Private Limited": 4,
+    "intent": 4,
+    "bright inventions": 4,
+    "Somnio Software": 4,
+    "Cheesecake Labs": 4,
+    "LeanCode": 4,
+    "Droid technologies LLC": 4,
+    "ChopDawg.com": 4,
+    "JPLoft": 4,
+    "STRV": 4,
+    "Synergy Labs": 4,
+    "Indium": 4,
+    "Developer Bazaar Technologies": 4
+  },
+  "imputations": {
+    "hourly_mid": {
+      "filled": 42,
+      "na_before": 42,
+      "na_after": 0
+    },
+    "min_project_usd": {
+      "filled": 141,
+      "na_before": 141,
+      "na_after": 0
+    },
+    "team_mid": {
+      "filled": 0,
+      "na_before": 0,
+      "na_after": 0
+    },
+    "rating": {
+      "filled": 1,
+      "na_before": 1,
+      "na_after": 0,
+      "global_median": 5.0
+    }
+  },
+  "medians_used": {
+    "hourly_mid": {
+      "group_medians": {
+        "clutch.co": 74.5,
+        "www.goodfirms.co": 37.0
+      },
+      "global_median": 74.5
+    },
+    "min_project_usd": {
+      "group_medians": {
+        "clutch.co": 10000.0
+      },
+      "global_median": 10000.0
+    },
+    "team_mid": {
+      "group_medians": {
+        "clutch.co": 149.5,
+        "www.goodfirms.co": 149.5
+      },
+      "global_median": 149.5
+    }
+  },
+  "iqr_clipping": {
+    "hourly_mid": {
+      "q1": 37.0,
+      "q3": 74.5,
+      "iqr": 37.5,
+      "low": -19.25,
+      "high": 130.75,
+      "n_low": 0,
+      "n_high": 46,
+      "pct": 0.06734992679355783
+    },
+    "min_project_usd": {
+      "q1": 10000.0,
+      "q3": 25000.0,
+      "iqr": 15000.0,
+      "low": -12500.0,
+      "high": 47500.0,
+      "n_low": 0,
+      "n_high": 80,
+      "pct": 0.1171303074670571
+    },
+    "team_mid": {
+      "q1": 29.5,
+      "q3": 149.5,
+      "iqr": 120.0,
+      "low": -150.5,
+      "high": 329.5,
+      "n_low": 0,
+      "n_high": 102,
+      "pct": 0.1493411420204978
+    }
+  },
   "segments": {
     "middle-priced": 505,
     "high-priced": 95,
     "low-priced": 83
   },
-  "timestamp": "2025-10-26T18:27:55.994780"
+  "numeric_summary": {
+    "rating": {
+      "count": 683.0,
+      "mean": 4.912884333821376,
+      "std": 0.12293226959063129,
+      "min": 4.0,
+      "25%": 4.9,
+      "50%": 5.0,
+      "75%": 5.0,
+      "max": 5.0
+    },
+    "hourly_mid": {
+      "count": 683.0,
+      "mean": 60.450219619326504,
+      "std": 34.421452776459326,
+      "min": 12.5,
+      "25%": 37.0,
+      "50%": 74.5,
+      "75%": 74.5,
+      "max": 130.75
+    },
+    "min_project_usd": {
+      "count": 683.0,
+      "mean": 16073.206442166911,
+      "std": 13521.804899451998,
+      "min": 1000.0,
+      "25%": 10000.0,
+      "50%": 10000.0,
+      "75%": 25000.0,
+      "max": 47500.0
+    },
+    "team_mid": {
+      "count": 683.0,
+      "mean": 124.38726207906296,
+      "std": 103.51274815719968,
+      "min": 4.5,
+      "25%": 29.5,
+      "50%": 149.5,
+      "75%": 149.5,
+      "max": 329.5
+    },
+    "reviews_count": {
+      "count": 683.0,
+      "mean": 27.213762811127378,
+      "std": 32.70262328679593,
+      "min": 1.0,
+      "25%": 7.0,
+      "50%": 16.0,
+      "75%": 38.0,
+      "max": 358.0
+    }
+  }
 }
